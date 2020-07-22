@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chinasofti.dao.area.EmpDao">
+  <resultMap id="BaseResultMap" type="com.chinasofti.model.area.Emp">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="NAME" jdbcType="VARCHAR" property="name" />
+    <result column="SEX" jdbcType="VARCHAR" property="sex" />
+    <result column="COMPANYID" jdbcType="DECIMAL" property="companyid" />
+    <result column="DEPTID" jdbcType="DECIMAL" property="deptid" />
+    <result column="POSITIONID" jdbcType="DECIMAL" property="positionid" />
+    <result column="SETUPID" jdbcType="DECIMAL" property="setupid" />
+    <result column="LEV" jdbcType="VARCHAR" property="lev" />
+    <result column="AWAY" jdbcType="VARCHAR" property="away" />
+    <result column="QQ" jdbcType="VARCHAR" property="qq" />
+    <result column="WECHART" jdbcType="VARCHAR" property="wechart" />
+    <result column="EMAIL" jdbcType="VARCHAR" property="email" />
+    <result column="ADDRESS" jdbcType="VARCHAR" property="address" />
+    <result column="CREATEID" jdbcType="VARCHAR" property="createid" />
+    <result column="CREATETIME" jdbcType="DATE" property="createtime" />
+    <result column="MODIFYID" jdbcType="VARCHAR" property="modifyid" />
+    <result column="MODIFYTIME" jdbcType="DATE" property="modifytime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, NAME, SEX, COMPANYID, DEPTID, POSITIONID, SETUPID, LEV, AWAY, QQ, WECHART, EMAIL, 
+    ADDRESS, CREATEID, CREATETIME, MODIFYID, MODIFYTIME
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from AREA_EMP
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from AREA_EMP
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.chinasofti.model.area.Emp">
+    <selectKey keyProperty="id" resultType="String" order="BEFORE">
+      select emp_squence.nextval from dual
+    </selectKey>
+    insert into AREA_EMP (ID, NAME, SEX, 
+      COMPANYID, DEPTID, POSITIONID, 
+      SETUPID, LEV, AWAY, 
+      QQ, WECHART, EMAIL, 
+      ADDRESS, CREATEID, CREATETIME, 
+      MODIFYID, MODIFYTIME)
+    values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, 
+      #{companyid,jdbcType=DECIMAL}, #{deptid,jdbcType=DECIMAL}, #{positionid,jdbcType=DECIMAL}, 
+      #{setupid,jdbcType=DECIMAL}, #{lev,jdbcType=VARCHAR}, #{away,jdbcType=VARCHAR}, 
+      #{qq,jdbcType=VARCHAR}, #{wechart,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
+      #{address,jdbcType=VARCHAR}, #{createid,jdbcType=VARCHAR}, #{createtime,jdbcType=DATE}, 
+      #{modifyid,jdbcType=VARCHAR}, #{modifytime,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.chinasofti.model.area.Emp">
+    <selectKey keyProperty="id" resultType="String" order="BEFORE">
+      select emp_squence.nextval from dual
+    </selectKey>
+    insert into AREA_EMP
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="name != null">
+        NAME,
+      </if>
+      <if test="sex != null">
+        SEX,
+      </if>
+      <if test="companyid != null">
+        COMPANYID,
+      </if>
+      <if test="deptid != null">
+        DEPTID,
+      </if>
+      <if test="positionid != null">
+        POSITIONID,
+      </if>
+      <if test="setupid != null">
+        SETUPID,
+      </if>
+      <if test="lev != null">
+        LEV,
+      </if>
+      <if test="away != null">
+        AWAY,
+      </if>
+      <if test="qq != null">
+        QQ,
+      </if>
+      <if test="wechart != null">
+        WECHART,
+      </if>
+      <if test="email != null">
+        EMAIL,
+      </if>
+      <if test="address != null">
+        ADDRESS,
+      </if>
+      <if test="createid != null">
+        CREATEID,
+      </if>
+      <if test="createtime != null">
+        CREATETIME,
+      </if>
+      <if test="modifyid != null">
+        MODIFYID,
+      </if>
+      <if test="modifytime != null">
+        MODIFYTIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="companyid != null">
+        #{companyid,jdbcType=DECIMAL},
+      </if>
+      <if test="deptid != null">
+        #{deptid,jdbcType=DECIMAL},
+      </if>
+      <if test="positionid != null">
+        #{positionid,jdbcType=DECIMAL},
+      </if>
+      <if test="setupid != null">
+        #{setupid,jdbcType=DECIMAL},
+      </if>
+      <if test="lev != null">
+        #{lev,jdbcType=VARCHAR},
+      </if>
+      <if test="away != null">
+        #{away,jdbcType=VARCHAR},
+      </if>
+      <if test="qq != null">
+        #{qq,jdbcType=VARCHAR},
+      </if>
+      <if test="wechart != null">
+        #{wechart,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="createid != null">
+        #{createid,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=DATE},
+      </if>
+      <if test="modifyid != null">
+        #{modifyid,jdbcType=VARCHAR},
+      </if>
+      <if test="modifytime != null">
+        #{modifytime,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.chinasofti.model.area.Emp">
+    update AREA_EMP
+    <set>
+      <if test="name != null">
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        SEX = #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="companyid != null">
+        COMPANYID = #{companyid,jdbcType=DECIMAL},
+      </if>
+      <if test="deptid != null">
+        DEPTID = #{deptid,jdbcType=DECIMAL},
+      </if>
+      <if test="positionid != null">
+        POSITIONID = #{positionid,jdbcType=DECIMAL},
+      </if>
+      <if test="setupid != null">
+        SETUPID = #{setupid,jdbcType=DECIMAL},
+      </if>
+      <if test="lev != null">
+        LEV = #{lev,jdbcType=VARCHAR},
+      </if>
+      <if test="away != null">
+        AWAY = #{away,jdbcType=VARCHAR},
+      </if>
+      <if test="qq != null">
+        QQ = #{qq,jdbcType=VARCHAR},
+      </if>
+      <if test="wechart != null">
+        WECHART = #{wechart,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        EMAIL = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        ADDRESS = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="createid != null">
+        CREATEID = #{createid,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        CREATETIME = #{createtime,jdbcType=DATE},
+      </if>
+      <if test="modifyid != null">
+        MODIFYID = #{modifyid,jdbcType=VARCHAR},
+      </if>
+      <if test="modifytime != null">
+        MODIFYTIME = #{modifytime,jdbcType=DATE},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.chinasofti.model.area.Emp">
+    update AREA_EMP
+    set NAME = #{name,jdbcType=VARCHAR},
+      SEX = #{sex,jdbcType=VARCHAR},
+      COMPANYID = #{companyid,jdbcType=DECIMAL},
+      DEPTID = #{deptid,jdbcType=DECIMAL},
+      POSITIONID = #{positionid,jdbcType=DECIMAL},
+      SETUPID = #{setupid,jdbcType=DECIMAL},
+      LEV = #{lev,jdbcType=VARCHAR},
+      AWAY = #{away,jdbcType=VARCHAR},
+      QQ = #{qq,jdbcType=VARCHAR},
+      WECHART = #{wechart,jdbcType=VARCHAR},
+      EMAIL = #{email,jdbcType=VARCHAR},
+      ADDRESS = #{address,jdbcType=VARCHAR},
+      CREATEID = #{createid,jdbcType=VARCHAR},
+      CREATETIME = #{createtime,jdbcType=DATE},
+      MODIFYID = #{modifyid,jdbcType=VARCHAR},
+      MODIFYTIME = #{modifytime,jdbcType=DATE}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+
+  <select id="selectList" parameterType="com.chinasofti.model.area.Emp" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from AREA_EMP
+    <where>
+      <if test="id != null and id != ''">
+        and id = #{id}
+      </if>
+      <if test="name != null and name != ''">
+        and name = #{name}
+      </if>
+    </where>
+    order  by ${orderName} ${orderDesc}
+  </select>
+  <select id="queryList" parameterType="com.chinasofti.model.area.Emp" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from AREA_EMP
+    <where>
+      <if test="deptid != null and deptid != ''">
+        and deptid = #{deptid}
+      </if>
+    </where>
+  </select>
+  <select id="queryTE" parameterType="com.chinasofti.model.area.Emp" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from AREA_EMP
+    <where>
+      <if test="companyid != null and companyid != ''">
+        and companyid = #{companyid}
+      </if>
+      and positionid=1
+    </where>
+  </select>
+  <select id="queryTA" parameterType="com.chinasofti.model.area.Emp" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from AREA_EMP
+    <where>
+      <if test="companyid != null and companyid != ''">
+        and companyid = #{companyid}
+      </if>
+      and positionid=2
+    </where>
+  </select>
+  <select id="queryTR" parameterType="com.chinasofti.model.area.Emp" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from AREA_EMP
+    <where>
+      <if test="companyid != null and companyid != ''">
+        and companyid = #{companyid}
+      </if>
+      and positionid=3
+    </where>
+  </select>
+</mapper>

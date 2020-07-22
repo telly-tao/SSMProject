@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chinasofti.dao.sys.UserRoleDao">
+  <resultMap id="BaseResultMap" type="com.chinasofti.model.sys.UserRole">
+    <result column="USERID" jdbcType="VARCHAR" property="userid" />
+    <result column="ROLEID" jdbcType="DECIMAL" property="roleid" />
+  </resultMap>
+  <insert id="insert" parameterType="com.chinasofti.model.sys.UserRole">
+    insert into SYS_USERROLE (USERID, ROLEID)
+    values (#{userid,jdbcType=VARCHAR}, #{roleid,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.chinasofti.model.sys.UserRole">
+    insert into SYS_USERROLE
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userid != null">
+        USERID,
+      </if>
+      <if test="roleid != null">
+        ROLEID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userid != null">
+        #{userid,jdbcType=VARCHAR},
+      </if>
+      <if test="roleid != null">
+        #{roleid,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+
+  <delete id="deleteByUserId" parameterType="java.lang.String">
+    delete from SYS_USERROLE where USERID = #{userid}
+  </delete>
+</mapper>

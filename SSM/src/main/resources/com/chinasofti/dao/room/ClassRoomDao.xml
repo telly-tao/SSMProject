@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chinasofti.dao.room.ClassRoomDao">
+  <resultMap id="BaseResultMap" type="com.chinasofti.model.room.ClassRoom">
+    <id column="ID" jdbcType="DECIMAL" property="id" />
+    <result column="NAME" jdbcType="VARCHAR" property="name" />
+    <result column="ADDRESS" jdbcType="VARCHAR" property="address" />
+    <result column="COMPANYID" jdbcType="DECIMAL" property="companyid" />
+    <result column="STATUS" jdbcType="VARCHAR" property="status" />
+    <result column="NUM" jdbcType="DECIMAL" property="num" />
+    <result column="CREATEID" jdbcType="VARCHAR" property="createid" />
+    <result column="CREATETIME" jdbcType="DATE" property="createtime" />
+    <result column="MODIFYID" jdbcType="VARCHAR" property="modifyid" />
+    <result column="MODIFYTIME" jdbcType="DATE" property="modifytime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, NAME, ADDRESS, COMPANYID, STATUS, NUM, CREATEID, CREATETIME, MODIFYID, MODIFYTIME
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ROOM_CLASSROOM
+    where ID = #{id,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from ROOM_CLASSROOM
+    where ID = #{id,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.chinasofti.model.room.ClassRoom">
+    <selectKey keyProperty="id" resultType="Integer" order="BEFORE">
+      select classroom_squence.nextval from dual
+    </selectKey>
+    insert into ROOM_CLASSROOM (ID, NAME, ADDRESS, 
+      COMPANYID, STATUS, NUM, 
+      CREATEID, CREATETIME, MODIFYID, 
+      MODIFYTIME)
+    values (#{id,jdbcType=DECIMAL}, #{name,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
+      #{companyid,jdbcType=DECIMAL}, #{status,jdbcType=VARCHAR}, #{num,jdbcType=DECIMAL}, 
+      #{createid,jdbcType=VARCHAR}, #{createtime,jdbcType=DATE}, #{modifyid,jdbcType=VARCHAR}, 
+      #{modifytime,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.chinasofti.model.room.ClassRoom">
+    <selectKey keyProperty="id" resultType="Integer" order="BEFORE">
+      select classroom_squence.nextval from dual
+    </selectKey>
+    insert into ROOM_CLASSROOM
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="name != null">
+        NAME,
+      </if>
+      <if test="address != null">
+        ADDRESS,
+      </if>
+      <if test="companyid != null">
+        COMPANYID,
+      </if>
+      <if test="status != null">
+        STATUS,
+      </if>
+      <if test="num != null">
+        NUM,
+      </if>
+      <if test="createid != null">
+        CREATEID,
+      </if>
+      <if test="createtime != null">
+        CREATETIME,
+      </if>
+      <if test="modifyid != null">
+        MODIFYID,
+      </if>
+      <if test="modifytime != null">
+        MODIFYTIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=DECIMAL},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="companyid != null">
+        #{companyid,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="num != null">
+        #{num,jdbcType=DECIMAL},
+      </if>
+      <if test="createid != null">
+        #{createid,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=DATE},
+      </if>
+      <if test="modifyid != null">
+        #{modifyid,jdbcType=VARCHAR},
+      </if>
+      <if test="modifytime != null">
+        #{modifytime,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.chinasofti.model.room.ClassRoom">
+    update ROOM_CLASSROOM
+    <set>
+      <if test="name != null">
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        ADDRESS = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="companyid != null">
+        COMPANYID = #{companyid,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null">
+        STATUS = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="num != null">
+        NUM = #{num,jdbcType=DECIMAL},
+      </if>
+      <if test="createid != null">
+        CREATEID = #{createid,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        CREATETIME = #{createtime,jdbcType=DATE},
+      </if>
+      <if test="modifyid != null">
+        MODIFYID = #{modifyid,jdbcType=VARCHAR},
+      </if>
+      <if test="modifytime != null">
+        MODIFYTIME = #{modifytime,jdbcType=DATE},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.chinasofti.model.room.ClassRoom">
+    update ROOM_CLASSROOM
+    set NAME = #{name,jdbcType=VARCHAR},
+      ADDRESS = #{address,jdbcType=VARCHAR},
+      COMPANYID = #{companyid,jdbcType=DECIMAL},
+      STATUS = #{status,jdbcType=VARCHAR},
+      NUM = #{num,jdbcType=DECIMAL},
+      CREATEID = #{createid,jdbcType=VARCHAR},
+      CREATETIME = #{createtime,jdbcType=DATE},
+      MODIFYID = #{modifyid,jdbcType=VARCHAR},
+      MODIFYTIME = #{modifytime,jdbcType=DATE}
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+  <select id="selectList" parameterType="com.chinasofti.model.room.ClassRoom" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from ROOM_CLASSROOM
+    <where>
+      <if test="id != null and id != ''">
+        and id = #{id}
+      </if>
+      <if test="name != null and name != ''">
+        and name = #{name}
+      </if>
+    </where>
+    order  by ${orderName} ${orderDesc}
+  </select>
+  <select id="queryList" parameterType="com.chinasofti.model.room.ClassRoom" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from ROOM_CLASSROOM
+    <where>
+      <if test="companyid != null and companyid != ''">
+        and companyid = #{companyid}
+      </if>
+    </where>
+  </select>
+</mapper>
