@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chinasofti.dao.sys.AuthDao">
+  <resultMap id="BaseResultMap" type="com.chinasofti.model.sys.Auth">
+    <id column="ID" jdbcType="DECIMAL" property="id" />
+    <result column="NAME" jdbcType="VARCHAR" property="name" />
+    <result column="ICON" jdbcType="VARCHAR" property="icon" />
+    <result column="URL" jdbcType="VARCHAR" property="url" />
+    <result column="SEQ" jdbcType="DECIMAL" property="seq" />
+    <result column="MARK" jdbcType="VARCHAR" property="mark" />
+    <result column="PID" jdbcType="DECIMAL" property="pid" />
+    <result column="CREATEID" jdbcType="VARCHAR" property="createid" />
+    <result column="CREATETIME" jdbcType="DATE" property="createtime" />
+    <result column="MODIFYID" jdbcType="VARCHAR" property="modifyid" />
+    <result column="MODIFYTIME" jdbcType="DATE" property="modifytime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, NAME, ICON, URL, SEQ, MARK, PID, CREATEID, CREATETIME, MODIFYID, MODIFYTIME
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from SYS_AUTH
+    where ID = #{id,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from SYS_AUTH
+    where ID = #{id,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.chinasofti.model.sys.Auth">
+    <selectKey keyProperty="id" resultType="int" order="BEFORE">
+      select auth_squence.nextval from dual
+    </selectKey>
+    insert into SYS_AUTH (ID, NAME, ICON, 
+      URL, SEQ, MARK, PID, 
+      CREATEID, CREATETIME, MODIFYID, 
+      MODIFYTIME)
+    values (#{id,jdbcType=DECIMAL}, #{name,jdbcType=VARCHAR}, #{icon,jdbcType=VARCHAR}, 
+      #{url,jdbcType=VARCHAR}, #{seq,jdbcType=DECIMAL}, #{mark,jdbcType=VARCHAR}, #{pid,jdbcType=DECIMAL}, 
+      #{createid,jdbcType=VARCHAR}, #{createtime,jdbcType=DATE}, #{modifyid,jdbcType=VARCHAR}, 
+      #{modifytime,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.chinasofti.model.sys.Auth">
+    <selectKey keyProperty="id" resultType="int" order="BEFORE">
+      select auth_squence.nextval from dual
+    </selectKey>
+    insert into SYS_AUTH
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="name != null">
+        NAME,
+      </if>
+      <if test="icon != null">
+        ICON,
+      </if>
+      <if test="url != null">
+        URL,
+      </if>
+      <if test="seq != null">
+        SEQ,
+      </if>
+      <if test="mark != null">
+        MARK,
+      </if>
+      <if test="pid != null">
+        PID,
+      </if>
+      <if test="createid != null">
+        CREATEID,
+      </if>
+      <if test="createtime != null">
+        CREATETIME,
+      </if>
+      <if test="modifyid != null">
+        MODIFYID,
+      </if>
+      <if test="modifytime != null">
+        MODIFYTIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=DECIMAL},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="icon != null">
+        #{icon,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="seq != null">
+        #{seq,jdbcType=DECIMAL},
+      </if>
+      <if test="mark != null">
+        #{mark,jdbcType=VARCHAR},
+      </if>
+      <if test="pid != null">
+        #{pid,jdbcType=DECIMAL},
+      </if>
+      <if test="createid != null">
+        #{createid,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=DATE},
+      </if>
+      <if test="modifyid != null">
+        #{modifyid,jdbcType=VARCHAR},
+      </if>
+      <if test="modifytime != null">
+        #{modifytime,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.chinasofti.model.sys.Auth">
+    update SYS_AUTH
+    <set>
+      <if test="name != null">
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="icon != null">
+        ICON = #{icon,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        URL = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="seq != null">
+        SEQ = #{seq,jdbcType=DECIMAL},
+      </if>
+      <if test="mark != null">
+        MARK = #{mark,jdbcType=VARCHAR},
+      </if>
+      <if test="pid != null">
+        PID = #{pid,jdbcType=DECIMAL},
+      </if>
+      <if test="createid != null">
+        CREATEID = #{createid,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        CREATETIME = #{createtime,jdbcType=DATE},
+      </if>
+      <if test="modifyid != null">
+        MODIFYID = #{modifyid,jdbcType=VARCHAR},
+      </if>
+      <if test="modifytime != null">
+        MODIFYTIME = #{modifytime,jdbcType=DATE},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.chinasofti.model.sys.Auth">
+    update SYS_AUTH
+    set NAME = #{name,jdbcType=VARCHAR},
+      ICON = #{icon,jdbcType=VARCHAR},
+      URL = #{url,jdbcType=VARCHAR},
+      SEQ = #{seq,jdbcType=DECIMAL},
+      MARK = #{mark,jdbcType=VARCHAR},
+      PID = #{pid,jdbcType=DECIMAL},
+      CREATEID = #{createid,jdbcType=VARCHAR},
+      CREATETIME = #{createtime,jdbcType=DATE},
+      MODIFYID = #{modifyid,jdbcType=VARCHAR},
+      MODIFYTIME = #{modifytime,jdbcType=DATE}
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+
+
+  <select id="selectList" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from SYS_AUTH
+    <where>
+      <if test="pid != null and pid != ''">
+        pid = #{pid}
+      </if>
+      <if test="pid == null or pid == ''">
+        pid is null
+      </if>
+    </where>
+    order by seq asc
+  </select>
+
+  <select id="selectByRoleId" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    SELECT
+	A.*
+    FROM
+	SYS_ROLE R
+	LEFT JOIN SYS_ROLEAUTH RA ON R.ID = RA.ROLEID
+	LEFT JOIN SYS_AUTH A ON RA.AUTHID = A.ID
+	WHERE R.ID = #{roleid}
+  </select>
+</mapper>

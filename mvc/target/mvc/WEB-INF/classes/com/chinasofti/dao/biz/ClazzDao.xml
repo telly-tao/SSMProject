@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chinasofti.dao.biz.ClazzDao">
+  <resultMap id="BaseResultMap" type="com.chinasofti.model.biz.Clazz">
+    <id column="ID" jdbcType="DECIMAL" property="id" />
+    <result column="NAME" jdbcType="VARCHAR" property="name" />
+    <result column="COMPANYID" jdbcType="DECIMAL" property="companyid" />
+    <result column="SETUPID" jdbcType="DECIMAL" property="setupid" />
+    <result column="PROPERTIES" jdbcType="VARCHAR" property="properties" />
+    <result column="CLASSROOMID" jdbcType="DECIMAL" property="classroomid" />
+    <result column="STARTDATE" jdbcType="DATE" property="startdate" />
+    <result column="ENDDATE" jdbcType="DATE" property="enddate" />
+    <result column="TE" jdbcType="VARCHAR" property="te" />
+    <result column="TA" jdbcType="VARCHAR" property="ta" />
+    <result column="TR" jdbcType="VARCHAR" property="tr" />
+    <result column="NUM" jdbcType="DECIMAL" property="num" />
+    <result column="MARK" jdbcType="VARCHAR" property="mark" />
+    <result column="CREATEID" jdbcType="VARCHAR" property="createid" />
+    <result column="CREATETIME" jdbcType="DATE" property="createtime" />
+    <result column="MODIFYID" jdbcType="VARCHAR" property="modifyid" />
+    <result column="MODIFYTIME" jdbcType="DATE" property="modifytime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, NAME, COMPANYID, SETUPID, PROPERTIES, CLASSROOMID, STARTDATE, ENDDATE, TE, TA,
+    TR, NUM, MARK, CREATEID, CREATETIME, MODIFYID, MODIFYTIME
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from BIZ_CLAZZ
+    where ID = #{id,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from BIZ_CLAZZ
+    where ID = #{id,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.chinasofti.model.biz.Clazz">
+    <selectKey keyProperty="id" resultType="Integer" order="BEFORE">
+      select clazz_squence.nextval from dual
+    </selectKey>
+    insert into BIZ_CLAZZ (ID, NAME, COMPANYID, 
+      SETUPID, PROPERTIES, CLASSROOMID,
+      STARTDATE, ENDDATE, TE, TA, 
+      TR, NUM, MARK, CREATEID, 
+      CREATETIME, MODIFYID, MODIFYTIME
+      )
+    values (#{id,jdbcType=DECIMAL}, #{name,jdbcType=VARCHAR}, #{companyid,jdbcType=DECIMAL}, 
+      #{setupid,jdbcType=DECIMAL}, #{properties,jdbcType=VARCHAR}, #{classroomid,jdbcType=DECIMAL},
+      #{startdate,jdbcType=DATE}, #{enddate,jdbcType=DATE}, #{te,jdbcType=VARCHAR}, #{ta,jdbcType=VARCHAR}, 
+      #{tr,jdbcType=VARCHAR}, #{num,jdbcType=DECIMAL}, #{mark,jdbcType=VARCHAR}, #{createid,jdbcType=VARCHAR}, 
+      #{createtime,jdbcType=DATE}, #{modifyid,jdbcType=VARCHAR}, #{modifytime,jdbcType=DATE}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.chinasofti.model.biz.Clazz">
+    <selectKey keyProperty="id" resultType="Integer" order="BEFORE">
+      select clazz_squence.nextval from dual
+    </selectKey>
+    insert into BIZ_CLAZZ
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="name != null">
+        NAME,
+      </if>
+      <if test="companyid != null">
+        COMPANYID,
+      </if>
+      <if test="setupid != null">
+        SETUPID,
+      </if>
+      <if test="properties != null">
+        PROPERTIES,
+      </if>
+      <if test="classroomid != null">
+        CLASSROOMID,
+      </if>
+      <if test="startdate != null">
+        STARTDATE,
+      </if>
+      <if test="enddate != null">
+        ENDDATE,
+      </if>
+      <if test="te != null">
+        TE,
+      </if>
+      <if test="ta != null">
+        TA,
+      </if>
+      <if test="tr != null">
+        TR,
+      </if>
+      <if test="num != null">
+        NUM,
+      </if>
+      <if test="mark != null">
+        MARK,
+      </if>
+      <if test="createid != null">
+        CREATEID,
+      </if>
+      <if test="createtime != null">
+        CREATETIME,
+      </if>
+      <if test="modifyid != null">
+        MODIFYID,
+      </if>
+      <if test="modifytime != null">
+        MODIFYTIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=DECIMAL},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="companyid != null">
+        #{companyid,jdbcType=DECIMAL},
+      </if>
+      <if test="setupid != null">
+        #{setupid,jdbcType=DECIMAL},
+      </if>
+      <if test="properties != null">
+        #{properties,jdbcType=VARCHAR},
+      </if>
+      <if test="classroomid != null">
+        #{classroomid,jdbcType=DECIMAL},
+      </if>
+      <if test="startdate != null">
+        #{startdate,jdbcType=DATE},
+      </if>
+      <if test="enddate != null">
+        #{enddate,jdbcType=DATE},
+      </if>
+      <if test="te != null">
+        #{te,jdbcType=VARCHAR},
+      </if>
+      <if test="ta != null">
+        #{ta,jdbcType=VARCHAR},
+      </if>
+      <if test="tr != null">
+        #{tr,jdbcType=VARCHAR},
+      </if>
+      <if test="num != null">
+        #{num,jdbcType=DECIMAL},
+      </if>
+      <if test="mark != null">
+        #{mark,jdbcType=VARCHAR},
+      </if>
+      <if test="createid != null">
+        #{createid,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=DATE},
+      </if>
+      <if test="modifyid != null">
+        #{modifyid,jdbcType=VARCHAR},
+      </if>
+      <if test="modifytime != null">
+        #{modifytime,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.chinasofti.model.biz.Clazz">
+    update BIZ_CLAZZ
+    <set>
+      <if test="name != null">
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="companyid != null">
+        COMPANYID = #{companyid,jdbcType=DECIMAL},
+      </if>
+      <if test="setupid != null">
+        SETUPID = #{setupid,jdbcType=DECIMAL},
+      </if>
+      <if test="properties != null">
+        PROPERTIES = #{properties,jdbcType=VARCHAR},
+      </if>
+      <if test="classroomid != null">
+        CLASSROOMID = #{classroomid,jdbcType=DECIMAL},
+      </if>
+      <if test="startdate != null">
+        STARTDATE = #{startdate,jdbcType=DATE},
+      </if>
+      <if test="enddate != null">
+        ENDDATE = #{enddate,jdbcType=DATE},
+      </if>
+      <if test="te != null">
+        TE = #{te,jdbcType=VARCHAR},
+      </if>
+      <if test="ta != null">
+        TA = #{ta,jdbcType=VARCHAR},
+      </if>
+      <if test="tr != null">
+        TR = #{tr,jdbcType=VARCHAR},
+      </if>
+      <if test="num != null">
+        NUM = #{num,jdbcType=DECIMAL},
+      </if>
+      <if test="mark != null">
+        MARK = #{mark,jdbcType=VARCHAR},
+      </if>
+      <if test="createid != null">
+        CREATEID = #{createid,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        CREATETIME = #{createtime,jdbcType=DATE},
+      </if>
+      <if test="modifyid != null">
+        MODIFYID = #{modifyid,jdbcType=VARCHAR},
+      </if>
+      <if test="modifytime != null">
+        MODIFYTIME = #{modifytime,jdbcType=DATE},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.chinasofti.model.biz.Clazz">
+    update BIZ_CLAZZ
+    set NAME = #{name,jdbcType=VARCHAR},
+      COMPANYID = #{companyid,jdbcType=DECIMAL},
+      SETUPID = #{setupid,jdbcType=DECIMAL},
+      PROPERTIES = #{properties,jdbcType=VARCHAR},
+      CLASSROOMID = #{classroomid,jdbcType=DECIMAL},
+      STARTDATE = #{startdate,jdbcType=DATE},
+      ENDDATE = #{enddate,jdbcType=DATE},
+      TE = #{te,jdbcType=VARCHAR},
+      TA = #{ta,jdbcType=VARCHAR},
+      TR = #{tr,jdbcType=VARCHAR},
+      NUM = #{num,jdbcType=DECIMAL},
+      MARK = #{mark,jdbcType=VARCHAR},
+      CREATEID = #{createid,jdbcType=VARCHAR},
+      CREATETIME = #{createtime,jdbcType=DATE},
+      MODIFYID = #{modifyid,jdbcType=VARCHAR},
+      MODIFYTIME = #{modifytime,jdbcType=DATE}
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+  <select id="selectList" parameterType="com.chinasofti.model.biz.Clazz" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from BIZ_CLAZZ
+  </select>
+</mapper>
