@@ -23,9 +23,11 @@ public class Clazz extends Page {
 
     private Integer classroomid;
 
+    @JSONField(format = "yyyy-MM-dd HH:mm:ss")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date startdate;
 
+    @JSONField(format = "yyyy-MM-dd HH:mm:ss")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date enddate;
 

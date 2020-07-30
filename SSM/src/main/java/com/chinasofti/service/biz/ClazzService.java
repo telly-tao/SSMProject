@@ -9,4 +9,6 @@ public interface ClazzService {
     int add(Clazz clazz, HttpSession session);
 
     DataTables DataTables(Clazz clazz);
+
+    DataTables DataTablesCurrentData(Clazz clazz, HttpSession session);
 }

@@ -242,4 +242,10 @@
     <include refid="Base_Column_List" />
     from BIZ_CLAZZ
   </select>
+  <select id="currentSelectList" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from BIZ_CLAZZ
+    where TE=#{userid} or TA=#{userid} or TR=#{userid}
+  </select>
 </mapper>

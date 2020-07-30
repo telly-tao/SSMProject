@@ -18,4 +18,6 @@ public interface ClazzDao {
     int updateByPrimaryKey(Clazz record);
 
     List<Clazz> selectList(Clazz clazz);
+
+    List<Clazz> currentSelectList(String userid);
 }

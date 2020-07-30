@@ -22,4 +22,9 @@ public class PageController {
         return  "error/noAuth";
     }
 
+    @RequestMapping("/testtime.action")
+    public String testtime(){
+        return  "biz/testtime";
+    }
+
 }

@@ -9,7 +9,7 @@
                 <div class="item form-group">
                     <label class="col-form-label col-md-3 col-sm-3 label-align">模板</label>
                     <div class="col-md-6 col-sm-6 ">
-                        <a href="${pageContext.request.contextPath}/file/emp.xls">用户数据导入模板</a>
+                        <a href="${pageContext.request.contextPath}/file/emp.xls">员工数据导入模板</a>
                     </div>
                 </div>
                 <div class="item form-group">

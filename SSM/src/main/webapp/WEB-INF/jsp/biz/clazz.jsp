@@ -9,8 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>主页</title>
     <!--dataTables-->
-    <link href="${pageContext.request.contextPath}/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css"
-          rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet">
     <!-- Bootstrap -->
     <link href="${pageContext.request.contextPath}/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
@@ -21,7 +20,8 @@
     <link href="${pageContext.request.contextPath}/build/css/custom.min.css" rel="stylesheet">
     <!-- jquery.validate -->
     <link href="${pageContext.request.contextPath}/build/css/jquery.validate.css" rel="stylesheet">
-
+    <!--datetimepicker-->
+    <link href="${pageContext.request.contextPath}/vendors/bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css">
 </head>
 
 <body class="nav-md">
@@ -76,16 +76,17 @@
                                         <option value="0">选择教室</option>
                                     </select>
                                 </div>
+
                                 <div class="item form-group">
                                     <label class="col-form-label col-md-1 col-sm-1  label-align">开始日期
                                         <span class="required">*</span>
                                     </label>
                                     <div class="col-md-5 col-sm-5">
-                                    <input id="startdate" name="startdate" class="form-control" class='form_datetime' type="date" required='required'></div>
+                                    <input id="startdate" name="startdate" class="form-control" type="date" required='required'></div>
                                     <label class="col-form-label col-md-1 col-sm-1  label-align">结束日期<span
                                             class="required">*</span></label>
                                     <div class="col-md-5 col-sm-5">
-                                    <input id="enddate" name="enddate" class="form-control" class='form_datetime' type="date" required='required'></div>
+                                    <input id="enddate" name="enddate" class="form-control"  type="date" required='required'></div>
                                  </div>
                                 <div class="item form-group">
                                     <label class="col-form-label col-md-1 col-sm-1 label-align">讲师</label>
@@ -143,12 +144,32 @@
 <!-- layui -->
 <script src="${pageContext.request.contextPath}/vendors/layui/layui.all.js"></script>
 
+<!--datetimepicker-->
+<script src="${pageContext.request.contextPath}/vendors/bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
 <!--文档就绪函数-->
 <script>
     $(function () {
         loadDataTables();
+        $("#startdate").datepicker({
+            todayBtn : "linked",
+            autoclose : true,
+            todayHighlight : true,
+            startDate : new Date()
+        }).on('changeDate',function(e){
+            alert("start");
+            var startTime = e.date;
+            $('#enddate').datepicker('setStartDate',startTime);
+        });
+        //结束时间：
+        $('#enddate').datepicker({
+            todayBtn : "linked",
+            autoclose : true,
+            todayHighlight : true
+        }).on('changeDate',function(e){
+            var endTime = e.date;
+            $('#startdate').datepicker('setEndDate',endTime);
+        });
     });
-
     function loadDataTables() {
         $.ajax({
             url: "${pageContext.request.contextPath}/area/company/queryCompany.action",
@@ -260,25 +281,14 @@
             });
         })
     }
+
     function add(){
+
        var adddata= $("#addForm").serialize();
         $.ajax({
             url: "${pageContext.request.contextPath}/biz/clazz/add.action",
             type: "post",
             data: adddata,
-           // data: {
-           //      companyid:$("#companyid").val(),
-           //      setupid:$("#setupid").val(),
-           //      properties:$("#properties").val(),
-           //      id:$("#classroomid").val(),
-           //      startdate:$("#startdate").val(),
-           //      enddate:$("#enddate").val(),
-           //      te:$("#te").val(),
-           //      ta:$("#ta").val(),
-           //      tr:$("#tr").val(),
-           //      num:$("#num").val(),
-           //      mark:$("#mark").val()
-           // },
             dataType: "json",
             success: function (data) {
                 layer.msg(data.message);

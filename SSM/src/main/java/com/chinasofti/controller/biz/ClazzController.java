@@ -56,8 +56,8 @@ public class ClazzController {
 
     @RequestMapping("/currentdata.action")
     @ResponseBody
-    public String currentdata(Clazz clazz){
-        DataTables dataTables = clazzService.DataTables(clazz);
+    public String currentdata(Clazz clazz,HttpSession session){
+        DataTables dataTables = clazzService.DataTablesCurrentData(clazz,session);
         return JSON.toJSONString(dataTables, SerializerFeature.WriteMapNullValue);
     }
     @RequestMapping("/alldata.action")
